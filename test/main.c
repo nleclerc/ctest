@@ -10,9 +10,27 @@
 
 int main(int argc, const char * argv[])
 {
+	// insert code here...
+	printf("Hello, World!\n");
+	
+	FILE *myfile = fopen("/Users/nicolas/Development/projects/nl/test/dummy.txt","rb");
 
-    // insert code here...
-    printf("Hello, World!\n");
-    return 0;
+	if (!myfile) {
+		printf("Could not open file.");
+		return 1;
+	}
+
+	int BUFF_SIZE = 2;
+	char buff[BUFF_SIZE+1];
+	unsigned short readSize;
+	
+	while ((readSize = fread(buff, 1, BUFF_SIZE, myfile)) != 0) {
+		buff[readSize] = 0;
+		printf("%s",buff);
+	}
+	
+	printf("\n");
+	fclose(myfile);
+	return 0;
 }
 
